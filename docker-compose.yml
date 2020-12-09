@@ -9,13 +9,6 @@ services:
       - ./frontend:/app
     stdin_open: true
 
-  nginx:
-    restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    ports:
-      - 3000:80
 
   backend:
     build:
@@ -31,6 +24,16 @@ services:
       MYSQL_ROOT_PASSWORD: bluemoon8523
       MYSQL_DATABASE: myapp
       MYSQL_PORT: 3306
+
+
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - 3000:80
+
 
   mysql:
     build: ./mysql
