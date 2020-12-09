@@ -9,6 +9,15 @@ const app = express();
 // json 해석
 app.use(bodyParser.json());
 
+// 테이블 생성하기 
+db.pool.query(`CREATE TABLE lists (
+    id INTEGER AUTO_INCREMENT,
+    value TEXT, 
+    PRIMARY KEY (id)
+)`, (err, results, fileds) => {
+    console.log('results', results)
+})
+
 // api 작동 확인
 app.get('/api/hi', function (req, res) {
    res.status(200).send('good')
@@ -36,15 +45,6 @@ app.post('/api/value', (req, res, next) => {
     }
   });
 })
-
-// TABLE CREATE
-// db.pool.query(`CREATE TABLE lists
-//   id INTEGER AUTO_INCREMENT,
-//   value TEXT,
-//   PRIMARY KEY (id)
-// `, (err, results, fields) => {
-//     console.log('results', results);
-// })
 
 app.listen(5000, () => {
   console.log('node server started! port 5000');
