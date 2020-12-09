@@ -9,6 +9,12 @@ const app = express();
 // json 해석
 app.use(bodyParser.json());
 
+// api 작동 확인
+app.get('/api/hi', function (req, res) {
+   res.status(200).send('good')
+})
+
+
 // list 조회
 app.get('/api/values', (req, res, next) => {
   db.pool.query('SELECT * FROM lists;', (err, results, fields) => {
